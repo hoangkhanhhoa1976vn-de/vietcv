@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoàng Khánh Hoà - Java Backend Developer</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-light: #60A5FA;
+            --primary-dark: #1E3A8A;
+            --secondary: #0F172A;
+            --text-main: #334155;
+            --text-light: #64748B;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.5);
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            /* Dynamic animated gradient background */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .title-font {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Main Container */
+        .cv-container {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-glass);
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* LEFT COLUMN */
+        .sidebar {
+            background: rgba(30, 58, 138, 0.95); /* Deep Navy */
+            color: rgba(255, 255, 255, 0.9);
+            padding: 50px 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .avatar-container {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-container:hover .avatar {
+            transform: scale(1.05);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 20px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .role {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary-light);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sidebar Sections */
+        .side-section {
+            margin-top: 40px;
+        }
+
+        .side-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .side-title i {
+            color: var(--primary-light);
+            font-size: 22px;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-list li:hover {
+            transform: translateX(5px);
+            color: #fff;
+        }
+
+        .contact-list i {
+            font-size: 20px;
+            color: var(--primary-light);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        /* Skills */
+        .skill-group {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), #3b82f6);
+            border-radius: 10px;
+            width: 0; /* Animated later via JS */
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+        
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        /* Tags for hobbies/languages */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .side-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .side-tag:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        /* RIGHT COLUMN */
+        .main-content {
+            padding: 50px;
+            background: transparent;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 28px;
+            background: #DBEAFE;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 3px;
+            background: var(--primary);
+            flex-grow: 1;
+            margin-left: 15px;
+            border-radius: 3px;
+            opacity: 0.1;
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: var(--text-main);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Timeline Items */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 0;
+            width: 2px;
+            background: #E2E8F0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #F1F5F9;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: #BFDBFE;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #DBEAFE;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover::before {
+            background: white;
+            border-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .item-subtitle {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .item-date {
+            background: #F1F5F9;
+            color: var(--text-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .item-list {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        .item-list li {
+            margin-bottom: 8px;
+            color: var(--text-main);
+            position: relative;
+            list-style: none;
+        }
+
+        .item-list li::before {
+            content: '▹';
+            position: absolute;
+            left: -20px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Tech Tags */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: white;
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-tag i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(37, 99, 235, 0.2);
+        }
+        
+        .tech-tag:hover i {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .contact-list li {
+                justify-content: center;
+            }
+            .side-title {
+                justify-content: center;
+            }
+            .tags-container {
+                justify-content: center;
+            }
+            .main-content {
+                padding: 30px 20px;
+            }
+            .item-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cv-container">
+        <!-- LEFT COLUMN -->
+        <aside class="sidebar">
+            <div class="avatar-container">
+                <!-- Using a high-quality placeholder if avatar.jpg fails, but keeping the original src -->
+                <img src="avatar.png" alt="Avatar" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Hoang+Khanh+Hoa&size=200&background=2563EB&color=fff'">
+            </div>
+            
+            <h1 class="name title-font">Hoàng Khánh Hoà</h1>
+            <h2 class="role">Java Backend Developer</h2>
+
+            <div class="side-section">
+                <h3 class="side-title title-font"><i class='bx bxs-contact'></i> Liên hệ</h3>
+                <ul class="contact-list">
+                    <li><i class='bx bx-phone'></i> <span>0779500800</span></li>
+                    <li><i class='bx bx-envelope'></i> <span>hoangkhanhhoa1976vn@gmail.com</span></li>
+                    <li><i class='bx bx-map'></i> <span>Đà Nẵng, Việt Nam</span></li>
+                    <li><i class='bx bx-calendar'></i> <span>18/02/2005</span></li>
+                </ul>
+            </div>
+
+            <div class="side-section">
+                <h3 class="side-title title-font"><i class='bx bx-code-alt'></i> Kỹ năng</h3>
+                <div class="skills-container">
+                    <div class="skill-group">
+                        <div class="skill-name"><span>Java / OOP</span> <span class="percent">90%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-name"><span>SQL Server</span> <span class="percent">85%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-name"><span>HTML & CSS</span> <span class="percent">80%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-name"><span>Git / GitHub</span> <span class="percent">70%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-name"><span>JavaScript</span> <span class="percent">65%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="65%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-section">
+                <h3 class="side-title title-font"><i class='bx bx-world'></i> Ngoại ngữ</h3>
+                <div class="tags-container">
+                    <span class="side-tag">Tiếng Anh (Đọc tài liệu)</span>
+                    <span class="side-tag">Tiếng Nhật (N5)</span>
+                </div>
+            </div>
+
+            <div class="side-section">
+                <h3 class="side-title title-font"><i class='bx bx-heart'></i> Sở thích</h3>
+                <div class="tags-container">
+                    <span class="side-tag">💻 Lập trình</span>
+                    <span class="side-tag">🎮 PUBG</span>
+                    <span class="side-tag">🚀 Công nghệ</span>
+                    <span class="side-tag">⛩️ Học tiếng Nhật</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN -->
+        <main class="main-content">
+            
+            <section class="section reveal">
+                <h2 class="section-title title-font"><i class='bx bx-user'></i> Giới thiệu</h2>
+                <p class="about-text">
+                    Sinh viên Công nghệ Thông tin yêu thích lập trình <b>Java Backend</b>. 
+                    Có kiến thức về Java, SQL Server, OOP, HTML/CSS và xây dựng ứng dụng quản lý.<br><br>
+                    Luôn chủ động học hỏi công nghệ mới, mong muốn tìm vị trí thực tập để phát triển kỹ năng và tích lũy kinh nghiệm thực tế.
+                </p>
+            </section>
+
+            <section class="section reveal">
+                <h2 class="section-title title-font"><i class='bx bxs-graduation'></i> Học vấn</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title title-font">Đại học FPT</h3>
+                                <div class="item-subtitle">Ngành Công nghệ Thông tin</div>
+                            </div>
+                            <span class="item-date">2022 - 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section reveal">
+                <h2 class="section-title title-font"><i class='bx bx-briefcase-alt-2'></i> Dự án cá nhân</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title title-font">Quản lý nhân sự</h3>
+                                <div class="item-subtitle">Desktop Application</div>
+                            </div>
+                        </div>
+                        <ul class="item-list">
+                            <li>Xây dựng bằng <b>Java Swing</b>.</li>
+                            <li>Lưu trữ dữ liệu bằng <b>SQL Server</b>.</li>
+                            <li>Thiết kế theo mô hình <b>MVC</b>.</li>
+                            <li>Thực hiện các thao tác <b>CRUD</b> dữ liệu.</li>
+                            <li>Tích hợp tính năng đăng nhập bảo mật và phân quyền người dùng.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <div>
+                                <h3 class="item-title title-font">Robot dò line Arduino</h3>
+                                <div class="item-subtitle">Hệ thống Nhúng / IoT</div>
+                            </div>
+                        </div>
+                        <ul class="item-list">
+                            <li>Lập trình điều khiển vi điều khiển <b>Arduino Uno</b>.</li>
+                            <li>Xử lý tín hiệu từ <b>cảm biến hồng ngoại</b>.</li>
+                            <li>Tích hợp module <b>Bluetooth HC-05</b>.</li>
+                            <li>Xử lý logic điều khiển động cơ.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section reveal">
+                <h2 class="section-title title-font"><i class='bx bx-layer'></i> Công nghệ</h2>
+                <div class="tech-tags">
+                    <div class="tech-tag"><i class='bx bxl-java'></i> Java</div>
+                    <div class="tech-tag"><i class='bx bx-data'></i> SQL Server</div>
+                    <div class="tech-tag"><i class='bx bx-cube-alt'></i> OOP</div>
+                    <div class="tech-tag"><i class='bx bxl-git'></i> Git</div>
+                    <div class="tech-tag"><i class='bx bxl-html5'></i> HTML</div>
+                    <div class="tech-tag"><i class='bx bxl-css3'></i> CSS</div>
+                    <div class="tech-tag"><i class='bx bxl-javascript'></i> JavaScript</div>
+                    <div class="tech-tag"><i class='bx bx-microchip'></i> Arduino</div>
+                </div>
+            </section>
+
+            <section class="section reveal">
+                <h2 class="section-title title-font"><i class='bx bx-target-lock'></i> Mục tiêu nghề nghiệp</h2>
+                <p class="about-text">
+                    Trong 1–2 năm tới mong muốn trở thành Java Backend Developer, nâng cao khả năng thiết kế hệ thống, làm việc nhóm và tham gia các dự án thực tế để phát triển chuyên môn.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Script for animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Scroll Reveal Animation for Sections
+            const revealElements = document.querySelectorAll(".reveal");
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1, // Trigger when 10% of element is visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 2. Animate Skill Bars when Sidebar is loaded
+            const skillFills = document.querySelectorAll(".skill-fill");
+            setTimeout(() => {
+                skillFills.forEach(fill => {
+                    const width = fill.getAttribute("data-width");
+                    fill.style.width = width;
+                });
+            }, 500); // Delay slightly for overall entrance animation to finish
+        });
+    </script>
+</body>
+</html>
